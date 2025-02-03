@@ -3,12 +3,24 @@
 {% block title %}DealGames - {{ announce.title }}{% endblock %}
 
 {% block body %}
-<h1> {{ announce.title }} </h1>
+<div class="example-wrapper">
 
-<h2>Publié par {{ announce.author }}</h2>
+    <a href="{{ path('announce.index') }}"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+            viewBox="0 -960 960 960" width="24px" fill="#000000">
+            <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+        </svg>Revenir en arrière</a>
 
-<p>
-    {{ announce.description }}
-</p>
+    <h1> {{ announce.title }} </h1>
 
+    <h2>Publié par {{ announce.author }},</h2>
+
+    <h4>le {{ announce.published|date("j F, H:i") }}</h4>
+
+    <h5>{{ announce.categories|capitalize }}</h5>
+
+    <p>
+        {{ announce.description }}
+    </p>
+
+</div>
 {% endblock %}
