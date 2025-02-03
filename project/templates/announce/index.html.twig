@@ -7,14 +7,14 @@
 <div class="card-group">
 
         {% for announce in announces %}
-        <div class="card h-100">
+        <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ announce.title }}</h5>
                 <h6><span class="badge text-bg-secondary">{{ announce.categories|capitalize }}</span></h6>
                 <a href="{{ path('announce.show', {id: announce.id}) }}" class="card-link">Voir plus</a>
-                <div class="card-footer">
-                    <small class="text-body-secondary">Publiée le {{ announce.published|date("j F, H:i") }}</small>
-                </div>
+            </div>
+            <div class="card-footer">
+                <small class="text-body-secondary">Publiée le {{ announce.published|date("j F, H:i") }}</small>
             </div>
         </div>
         {% endfor %}
