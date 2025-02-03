@@ -3,5 +3,12 @@
 {% block title %}DealGames - Annonces{% endblock %}
 
 {% block body %}
-Wowie ! C'est un bon début, non ?
+
+<ul>
+    {% for announce in announces %}
+        <li>
+            <a href="{{ path('announce.show', {id: announce.id}) }}">{{ announce.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
 {% endblock %}

@@ -1,7 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DealGames - {{ slug }}{% endblock %}
+{% block title %}DealGames - {{ announce.title }}{% endblock %}
 
 {% block body %}
-{{ slug }}
+<h1> {{ announce.title }} </h1>
+
+<h2>Publié par {{ announce.author }}</h2>
+
+<p>
+    {{ announce.description }}
+</p>
+
 {% endblock %}
