@@ -3,10 +3,15 @@
 {% block title %}DealGames - Annonces{% endblock %}
 
 {% block body %}
+{% if app.user %}
+<div>
+    <a href="{{ path('announce.index') }}" class="btn btn-lg btn-success">Ajouter une annonce</a>
+</div>
+{% endif %}
 
-<div class="card-group">
-
-        {% for announce in announces %}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for announce in announces %}
+    <div class="col">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ announce.title }}</h5>
@@ -17,7 +22,8 @@
                 <small class="text-body-secondary">Publiée le {{ announce.published|date("j F, H:i") }}</small>
             </div>
         </div>
-        {% endfor %}
+    </div>
+    {% endfor %}
 
 </div>
 {% endblock %}

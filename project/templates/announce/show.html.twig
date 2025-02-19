@@ -22,5 +22,15 @@
         {{ announce.description }}
     </p>
 
+    {% if app.user %}
+    <div>
+        <a href="{{ path('announce.edit', {id: announce.id}) }}" class="btn btn-lg btn-primary">Modifer mon annonce</a>
+        <form action="{{ path('announce.delete', {id: announce.id}) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" href="{{ path('announce.delete', {id: announce.id}) }}" class="btn btn-lg btn-danger">Supprimer mon annonce</button>
+        </form>
+    </div>
+    {% endif %}
+
 </div>
 {% endblock %}

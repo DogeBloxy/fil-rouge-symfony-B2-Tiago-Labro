@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DealGames - Modifier une annonce{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1 class="h3 mb-3 font-weight-normal">Modification de l'annonce : {{ announce.title }}</h1>
+
+    {{ form_start(announceForm) }}
+            {{ form_row(announceForm.title, {
+            label: 'Nom du Produit'
+            }) }}
+            {{ form_row(announceForm.description, {
+            label: 'Description du Produit'
+            }) }}
+            {{ form_row(announceForm.category, {
+            label: 'Catégorie du Produit'
+            }) }}
+    <button type="submit" class="btn btn-lg btn-primary">Modifer mon annonce</button>
+    {{ form_end(announceForm) }}
+</div>
+{% endblock %}

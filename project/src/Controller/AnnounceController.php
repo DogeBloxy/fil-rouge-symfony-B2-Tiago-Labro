@@ -41,7 +41,7 @@ final class AnnounceController extends AbstractController
         ]);
     }
 
-    #[Route('/announce/add', name: 'announce.add')]
+    #[Route('/announce/add', name: 'announce.add', methods:['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
     public function add(Request $request, EntityManagerInterface $entityManager, Security $security): Response
     {
@@ -69,5 +69,33 @@ final class AnnounceController extends AbstractController
         return $this->render('announce/add.html.twig', [
             'announceForm' => $announceForm->createView(),
         ]);
+    }
+
+    #[Route('/announce/{id}/edit', name: 'announce.edit', requirements: ['id' => '\d+'], methods:['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
+    public function edit(Announces $announce, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $announceForm = $this->createForm(AddAnnouncementFormType::class, $announce);
+        $announceForm->handleRequest($request);
+        if ($announceForm->isSubmitted() && $announceForm->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', "L'annonce a été modifiée !");
+            return $this->redirectToRoute('announce.index');
+        }
+
+        return $this->render('announce/modify.html.twig', [
+            'announceForm' => $announceForm->createView(),
+            'announce' => $announce
+        ]);
+    }
+
+    #[Route('/announce/{id}/delete', name: 'announce.delete', requirements: ['id' => '\d+'], methods:['DELETE'])]
+    #[IsGranted('ROLE_USER')]
+    public function delete(Announces $announce, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($announce);
+        $entityManager->flush();
+        $this->addFlash('success', "L'annonce a été supprimée !");
+        return $this->redirectToRoute('announce.index');
     }
 }
