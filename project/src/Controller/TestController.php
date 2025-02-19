@@ -12,7 +12,7 @@ final class TestController extends AbstractController
     #[Route('/', name: "home")]
     public function index(Request $request): Response
     {
-        $message = $this->getUser();
+        $message = "Moi-même";
         return $this->render('test/index.html.twig', [
             'message' => $message,
         ]);

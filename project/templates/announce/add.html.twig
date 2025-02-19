@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DealGames - Ajouter une annonce{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1 class="h3 mb-3 font-weight-normal">Ajouter une annonce</h1>
+
+    {{ form_start(announceForm) }}
+        {{ form_row(announceForm.title, {
+            label: 'Nom du Produit'
+        }) }}
+        {{ form_row(announceForm.description, {
+            label: 'Description du Produit'
+        }) }}
+        {{ form_row(announceForm.category, {
+            label: 'Catégorie du Produit'
+        }) }}
+
+        <button type="submit" class="btn btn-lg btn-primary">Ajouter mon annonce</button>
+    {{ form_end(announceForm) }}
+
+</div>
+{% endblock %}

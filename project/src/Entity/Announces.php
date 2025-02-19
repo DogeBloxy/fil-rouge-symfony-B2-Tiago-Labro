@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AnnouncesRepository;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,11 +24,11 @@ class Announces
     #[ORM\Column(length: 255)]
     private ?string $author = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $published = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, options: ["default" => 'CURRENT_TIMESTAMP'])]
+    private ?\DateTimeInterface $published;
 
     #[ORM\Column(length: 255)]
-    private ?string $categories = null;
+    private ?string $category = null;
 
     public function getId(): ?int
     {
@@ -82,15 +83,20 @@ class Announces
         return $this;
     }
 
-    public function getCategories(): ?string
+    public function getCategory(): ?string
     {
-        return $this->categories;
+        return $this->category;
     }
 
-    public function setCategories(string $categories): static
+    public function setCategory(string $category): static
     {
-        $this->categories = $categories;
+        $this->category = $category;
 
         return $this;
+    }
+
+    public function __construct()
+    {
+        $this->published = new DateTimeImmutable();
     }
 }

@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ announce.title }}</h5>
-                <h6><span class="badge text-bg-secondary">{{ announce.categories|capitalize }}</span></h6>
+                <h6><span class="badge text-bg-secondary">{{ announce.category|capitalize }}</span></h6>
                 <a href="{{ path('announce.show', {id: announce.id}) }}" class="card-link">Voir plus</a>
             </div>
             <div class="card-footer">
