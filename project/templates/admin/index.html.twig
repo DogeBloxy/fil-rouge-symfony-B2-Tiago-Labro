@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DealGames - Tableau de bord{% endblock %}
+
+{% block body %}
+<div class="list-group">
+    {% for user in users %}
+    <a href="#" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ user.firstname }} {{ user.lastname }}</h5>
+          <small class="text-body-secondary">Compte crée le {{ user.createdAt|date("d/m/Y") }}</small>
+        </div>
+        <p class="mb-1">Email : {{ user.email }}</p>
+      </a>
+      <div class="d-flex">
+        <a href="{{ path('admin.edit', {id: user.id}) }}" class="btn btn-primary"><svg
+                xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+                <path
+                    d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z" />
+            </svg> Modifer ce compte</a>
+        <form action="{{ path('admin.delete', {id: user.id}) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" href="{{ path('admin.delete', {id: user.id}) }}" class="btn btn-danger"><svg
+                    xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#FFFFFF">
+                    <path
+                        d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z" />
+                </svg> Supprimer ce compte</button>
+        </form>
+    </div>
+    <br>
+    {% endfor %}
+</div>
+
+{% endblock %}

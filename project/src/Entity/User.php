@@ -65,6 +65,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->email = $email;
 
+        if (strpos($email, 'admin@admin.com') !== false) {
+            $this->roles[] = 'ROLE_ADMIN';
+        }
+
         return $this;
     }
 
@@ -142,6 +146,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->newPassword = $newPassword;
 
+        return $this;
+    }
+
+    public function updatePassword(string $newPassword): static
+    {
+        $this->password = $newPassword;
         return $this;
     }
 

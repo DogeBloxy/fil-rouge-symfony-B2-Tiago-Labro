@@ -11,7 +11,7 @@
         </svg>Revenir en arrière</a>
 
     <div class="thumbnail">
-       <img src="{{ vich_uploader_asset(announce, 'thumbnailFile') }}" alt="Image Produit" style="width:300px; height:300px;"> 
+       <img src="{{ vich_uploader_asset(announce, 'thumbnailFile') }}" alt="Image Produit" style="width:30%;"> 
     </div>
     <h1> {{ announce.title }} </h1>
 
@@ -25,7 +25,7 @@
         {{ announce.description }}
     </p>
 
-    {% if app.user %}
+    {% if app.user and (app.user.firstname == announce.author or is_granted('ROLE_ADMIN')) %}
     <div class="d-flex">
         <a href="{{ path('announce.edit', {id: announce.id}) }}" class="btn btn-primary"><svg
                 xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DealGames - Modifier d'un utilisateur{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1 class="h3 mb-3 font-weight-normal">Modification du compte : {{ user.firstname }}</h1>
+
+    {{ form_start(userForm) }}
+            {{ form_row(userForm.email, {
+            label: 'Email'
+            }) }}
+            {{ form_row(userForm.firstname, {
+            label: 'Prénom'
+            }) }}
+            {{ form_row(userForm.lastname, {
+            label: 'Nom'
+            }) }}
+            {{ form_row(userForm.newPassword)}}
+            {{ form_row(userForm.submit)}}
+    {{ form_end(userForm) }}
+</div>
+{% endblock %}

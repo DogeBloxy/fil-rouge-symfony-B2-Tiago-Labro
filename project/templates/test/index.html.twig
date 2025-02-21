@@ -8,6 +8,12 @@
     {% if app.user %}
     <h1 class="h3 mb-3 font-weight-normal">Oh ! C'est vous, {{ app.user.firstname }} !</h1>
     <h2 class="h4 mb-3 font-weight-normal">Heureux de vous revoir !</h2>
+    {% if is_granted('ROLE_ADMIN') %}
+        <p>Vous êtes administrateur de DealGames.</p>
+        <p>Vous pouvez consulter, ajouter, modifier et supprimer des annonces.</p>
+        <p>Vous pouvez aussi consulter, ajouter, modifier et supprimer des utilisateurs.</p>
+        <a href="{{ path('admin.index') }}" class="btn btn-primary">Aller dans le tableau de bord</a>
+    {% endif %}
     {% else %}
     <h1 class="h3 mb-3 font-weight-normal">Bienvenue sur DealGames</h1>
     <p>DealGames est une plateforme de vente de jeux vidéos d'occasion.</p>
