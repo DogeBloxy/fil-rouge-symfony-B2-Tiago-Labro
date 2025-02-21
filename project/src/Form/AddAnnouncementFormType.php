@@ -5,11 +5,13 @@ namespace App\Form;
 use App\Entity\Announces;
 use App\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class AddAnnouncementFormType extends AbstractType
 {
@@ -33,7 +35,8 @@ class AddAnnouncementFormType extends AbstractType
             ->add('description')
             ->add('category', ChoiceType::class, [
                 'choices' => $categoryChoices,
-            ]);
+            ])
+            ->add('thumbnailFile', FileType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

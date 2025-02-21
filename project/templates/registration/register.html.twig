@@ -22,11 +22,11 @@
             label: 'Email'
         }) }}
         {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+            label: 'Mot de passe'
         }) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn btn-lg btn-primary">M'inscrire</button>
+        <button type="submit" class="btn btn-primary">M'inscrire</button>
     {{ form_end(registrationForm) }}
     <p>Déjà inscrit(e) ? <a href="{{ path('app_login') }}">Me connecter</a></p>
 {% endblock %}

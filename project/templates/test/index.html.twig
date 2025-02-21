@@ -5,7 +5,15 @@
 {% block body %}
 
 <div class="example-wrapper">
-    <h1>DealGames</h1>
-
+    {% if app.user %}
+    <h1 class="h3 mb-3 font-weight-normal">Oh ! C'est vous, {{ app.user.firstname }} !</h1>
+    <h2 class="h4 mb-3 font-weight-normal">Heureux de vous revoir !</h2>
+    {% else %}
+    <h1 class="h3 mb-3 font-weight-normal">Bienvenue sur DealGames</h1>
+    <p>DealGames est une plateforme de vente de jeux vidéos d'occasion.</p>
+    <p>Vous pouvez consulter les annonces, les ajouter, les modifier et les supprimer.</p>
+    <p>Connectez-vous pour accéder à toutes les fonctionnalités de DealGames.</p>
+    <p>Si vous n'avez pas de compte, vous pouvez vous inscrire.</p>
+    {% endif %}
 </div>
 {% endblock %}

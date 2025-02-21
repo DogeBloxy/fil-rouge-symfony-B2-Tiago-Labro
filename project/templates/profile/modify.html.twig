@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DealGames - Modifier votre profil{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1 class="h3 mb-3 font-weight-normal">Modification du profil : {{ app.user.firstname }}</h1>
+
+    {{ form_start(profileForm) }}
+            {{ form_row(profileForm.email, {
+            label: 'Votre Email'
+            }) }}
+            {{ form_row(profileForm.firstname, {
+            label: 'Prénom'
+            }) }}
+            {{ form_row(profileForm.lastname, {
+            label: 'Nom'
+            }) }}
+    <button type="submit" class="btn btn-primary">Modifer mon profil</button>
+    {{ form_end(profileForm) }}
+</div>
+{% endblock %}

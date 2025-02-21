@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DealGames - Email de réinitialisation de mot de passe envoyé{% endblock %}
+
+{% block body %}
+    <p>
+        Si un compte correspondant à votre email existe, un email contenant un lien pour réinitialiser votre mot de passe vient d'être envoyé.
+        Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+    </p>
+    <p>Si vous ne recevez pas d'email, veuillez vérifier votre dossier de spam ou <a href="{{ path('app_forgot_password_request') }}">réessayez</a>.</p>
+{% endblock %}

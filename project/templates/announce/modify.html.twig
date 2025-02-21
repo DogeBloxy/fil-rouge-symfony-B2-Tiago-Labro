@@ -16,7 +16,10 @@
             {{ form_row(announceForm.category, {
             label: 'Catégorie du Produit'
             }) }}
-    <button type="submit" class="btn btn-lg btn-primary">Modifer mon annonce</button>
+            {{ form_row(announceForm.thumbnailFile, {
+                label: 'Image du Produit'
+            }) }}
+    <button type="submit" class="btn btn-primary">Modifier mon annonce</button>
     {{ form_end(announceForm) }}
 </div>
 {% endblock %}

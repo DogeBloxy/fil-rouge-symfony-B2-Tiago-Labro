@@ -11,9 +11,10 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use App\Entity\User;
+use App\Security\Voter\AnnounceVoter;
 
 final class AnnounceController extends AbstractController
 {
@@ -28,6 +29,7 @@ final class AnnounceController extends AbstractController
             'announces' => $announces
         ]);
     }
+
     #[Route('/announce/{id}', name: 'announce.show', requirements: ['id' => '\d+'])]
     public function show(Request $request, int $id, EntityManagerInterface $entityManager): Response
     {
@@ -59,7 +61,6 @@ final class AnnounceController extends AbstractController
 
         if($announceForm->isSubmitted() && $announceForm->isValid()) {
             $announce = $announceForm->getData();
-            
             $entityManager->persist($announce);
             $entityManager->flush();
             $this->addFlash('success', "L'annonce a été créée !");
@@ -72,7 +73,7 @@ final class AnnounceController extends AbstractController
     }
 
     #[Route('/announce/{id}/edit', name: 'announce.edit', requirements: ['id' => '\d+'], methods:['GET', 'POST'])]
-    #[IsGranted('ROLE_USER')]
+    #[IsGranted(AnnounceVoter::EDIT, subject: 'announce')]
     public function edit(Announces $announce, Request $request, EntityManagerInterface $entityManager): Response
     {
         $announceForm = $this->createForm(AddAnnouncementFormType::class, $announce);
@@ -90,7 +91,7 @@ final class AnnounceController extends AbstractController
     }
 
     #[Route('/announce/{id}/delete', name: 'announce.delete', requirements: ['id' => '\d+'], methods:['DELETE'])]
-    #[IsGranted('ROLE_USER')]
+    #[IsGranted(AnnounceVoter::DELETE, subject: 'announce')]
     public function delete(Announces $announce, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($announce);

@@ -13,4 +13,35 @@
       <p class="card-text">Date d'inscription : {{ app.user.createdAt|date("d/m/Y") }}</p>
     </div>
   </div>
+<br>
+<div class="d-flex">
+  <a href="{{ path('profile.edit') }}" class="btn btn-primary">Modifer mon profil</a>
+  <a href="{{ path('profile.edit-password') }}" class="btn btn-primary">Modifer mon mot de passe</a>
+</div>
+
+<br>
+<div>
+  <h3>Mes annonces :</h3>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for announce in announces %}
+  <div class="col">
+      <div class="card">
+          <img src="{{ vich_uploader_asset(announce, 'thumbnailFile') }}" class="card-img-top"
+              alt="Image Produit" style="width:100%;">
+          <div class="card-body">
+              <h5 class="card-title">{{ announce.title }}</h5>
+              <h6><span class="badge text-bg-secondary">{{ announce.category|capitalize }}</span></h6>
+              <a href="{{ path('announce.show', {id: announce.id}) }}" class="card-link">Voir plus</a>
+          </div>
+          <div class="card-footer">
+              <small class="text-body-secondary">Publiée le {{ announce.published|date("j F, H:i") }}</small>
+          </div>
+      </div>
+  </div>
+  {% endfor %}
+
+</div>
+
 {% endblock %}

@@ -4,8 +4,12 @@
 
 {% block body %}
 {% if app.user %}
-<div>
-    <a href="{{ path('announce.index') }}" class="btn btn-lg btn-success">Ajouter une annonce</a>
+<div class="container my-4">
+    <a href="{{ path('announce.add') }}" class="btn btn-lg btn-success"><svg xmlns="http://www.w3.org/2000/svg"
+            height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+            <path
+                d="M720-40v-120H600v-80h120v-120h80v120h120v80H800v120h-80ZM80-160v-240H40v-80l40-200h600l40 200v80h-40v120h-80v-120H440v240H80Zm80-80h200v-160H160v160ZM80-720v-80h600v80H80Z" />
+        </svg> Ajouter une annonce</a>
 </div>
 {% endif %}
 
@@ -13,6 +17,8 @@
     {% for announce in announces %}
     <div class="col">
         <div class="card">
+            <img src="{{ vich_uploader_asset(announce, 'thumbnailFile') }}" class="card-img-top"
+                alt="Image Produit" style="width:100%;">
             <div class="card-body">
                 <h5 class="card-title">{{ announce.title }}</h5>
                 <h6><span class="badge text-bg-secondary">{{ announce.category|capitalize }}</span></h6>
