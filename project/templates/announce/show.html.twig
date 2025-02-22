@@ -17,7 +17,7 @@
 
     <h2>Publié par {{ announce.author }},</h2>
 
-    <h4>le {{ announce.published|date("j F, H:i") }}</h4>
+    <h4>le {{ announce.published|format_datetime('medium', 'short', locale: 'fr', timezone: 'Europe/Paris') }}</h4>
 
     <h5>{{ announce.category|capitalize }}</h5>
 

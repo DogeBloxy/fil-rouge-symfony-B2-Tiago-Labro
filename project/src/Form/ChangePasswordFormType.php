@@ -10,7 +10,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotCompromisedPassword;
-use Symfony\Component\Validator\Constraints\PasswordStrength;
 
 class ChangePasswordFormType extends AbstractType
 {
@@ -35,7 +34,6 @@ class ChangePasswordFormType extends AbstractType
                             // max length allowed by Symfony for security reasons
                             'max' => 4096,
                         ]),
-                        new PasswordStrength(),
                         new NotCompromisedPassword(),
                     ],
                     'label' => 'Nouveau mot de passe',
