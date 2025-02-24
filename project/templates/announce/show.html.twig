@@ -19,6 +19,8 @@
 
     <h4>le {{ announce.published|format_datetime('medium', 'short', locale: 'fr', timezone: 'Europe/Paris') }}</h4>
 
+    <h5>modifiée {{ announce.updatedAt|time_diff(locale='fr') }}</h5>
+
     <h5>{{ announce.category|capitalize }}</h5>
 
     <p>

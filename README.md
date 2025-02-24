@@ -1,125 +1,29 @@
-# Symfony Docker Project Setup
+<h1 align="center" id="title">DealGames - Symfony</h1>
 
-This repository contains a Docker-based development environment for Symfony applications.
+<p align="center"><img src="https://socialify.git.ci/DogeBloxy/fil-rouge-symfony-B2-Tiago-Labro/image?font=Raleway&language=1&name=1&owner=1&pattern=Circuit+Board&stargazers=1&theme=Dark" alt="project-image"></p>
 
-## Prerequisites
+<h2>Contexte :</h2>
 
-- Docker
-- Docker Compose
-- Git
+<p id="description">Gamers est une association loi 1905 implantée dans plusieurs régions de France. Elle a été créée par un groupe d’amis qui souhaite pratiquer sa passion pour les jeux vidéo sans se ruiner. Gamers à pour objectif de faciliter les échanges / ventes de jeux entre particuliers passionnés de jeux comme eux. L’association souhaite aujourd’hui créer une application web afin d’agrandir sa communauté et de faciliter les transactions entre les membres de la communauté. Elle a décidé d’appeler sa plateforme web « dealgames ».</p>
 
-## Environment Setup
+<h2>🧐 Fonctionnalités :</h2>
 
-1. Clone this repository:
+* Gestions des annonces
+* Gestion de l’espace membre
+* Gestion de profil
+* . Gestion des rôles
 
-```bash
-git clone git@github.com:Webanimus/symfony-dev-docker-base.git
-cd symfony-dev-docker-base
+<h2>🛠️ Installer le projet :</h2>
+
+<p>Ajouter le projet dans votre dossier</p>
+
+```
+git clone https://github.com/DogeBloxy/fil-rouge-symfony-B2-Tiago-Labro
 ```
 
-2. Start the Docker environment:
+<p>Plus d'infos dans le fichier <a href="tutorial.md">tutorial.md</a></p>
 
-```bash
-docker compose up -d --build
-```
+<h2>💻 Fais avec :</h2>
 
-3. Create a new Symfony project:
-
-```bash
-docker compose exec php composer create-project symfony/skeleton .
-docker compose exec php composer require webapp
-docker compose exec php composer require symfony/orm-pack
-```
-
-4. Set proper permissions:
-
-```bash
-docker compose exec php chown -R www-data:www-data var
-```
-
-## Accessing the Application
-
-- Symfony application: http://localhost:8080
-- phpMyAdmin: http://localhost:8081 (database management)
-- MailHog: http://localhost:8025 (email testing interface)
-
-## Database Configuration
-
-Update your `.env` file with these database credentials:
-
-```dotenv
-DATABASE_URL="mysql://symfony:symfony@database:3306/symfony?serverVersion=mariadb-10.11.2"
-```
-
-## Docker Services
-
-The environment includes the following services:
-
-- **PHP (8.2-FPM)**: PHP service with all necessary extensions for Symfony
-- **Nginx**: Web server
-- **MariaDB (10.11.2)**: Database server
-- **phpMyAdmin**: Database management tool
-- **MailHog**: Email testing tool
-
-### Database Credentials
-
-- Database: symfony
-- Username: symfony
-- Password: symfony
-- Root Password: root
-
-## Common Commands
-
-Start the environment:
-
-```bash
-docker compose up -d
-```
-
-Stop the environment:
-
-```bash
-docker compose down
-```
-
-Access PHP container:
-
-```bash
-docker compose exec php bash
-```
-
-Install Symfony dependencies:
-
-```bash
-docker compose exec php composer install
-```
-
-Clear Symfony cache:
-
-```bash
-docker compose exec php php bin/console cache:clear
-```
-
-## Development
-
-The project directory is mounted as a volume in the PHP container. Any changes you make to your local files will be reflected immediately in the container.
-
-## Troubleshooting
-
-1. If you encounter permission issues:
-
-```bash
-docker compose exec php chown -R www-data:www-data var
-```
-
-2. If Composer runs out of memory:
-
-```bash
-docker compose exec php php -d memory_limit=-1 /usr/bin/composer install
-```
-
-3. To view logs:
-
-```bash
-docker compose logs -f
-```
+* Bootstrap
+* Symfony (Voir la documentation officielle de Symfony pour en savoir plus)
