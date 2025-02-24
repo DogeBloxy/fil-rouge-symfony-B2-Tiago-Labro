@@ -1,55 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}DealGames - {{ announce.title }}{% endblock %}
+{% block title %}DealGames -
+	{{ announce.title }}
+{% endblock %}
 
 {% block body %}
-<div class="container">
-    <a href="{{ path('announce.index') }}"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
-            viewBox="0 -960 960 960" width="24px" fill="#000000">
-            <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
-        </svg>Revenir en arrière</a>
+	<div class="container">
+		<a href="{{ path('announce.index') }}">
+			<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#6da021"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg>
+			Revenir en arrière</a>
 
-    <div class="d-flex justify-content-center">
-        <div class="card" style="width: 37rem;">
-            <img src="{{ vich_uploader_asset(announce, 'thumbnailFile') }}" alt="Image Produit"
-                style="aspect-ratio: 1;">
-            <div class="card-body">
-                <h5 class="card-title">{{ announce.title }}</h5>
-                <p class="card-text"><span class="badge text-bg-secondary">{{ announce.category|capitalize }}</span></p>
-                <p class="card-text">{{ announce.description }}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Publié par {{ announce.author }}</li>
-                <li class="list-group-item">Le {{ announce.published|format_datetime('medium', 'short', locale: 'fr',
+		<div class="d-flex justify-content-center">
+			<div class="card" style="width: 37rem;">
+				<img src="{{ vich_uploader_asset(announce, 'thumbnailFile') }}" alt="Image Produit" style="aspect-ratio: 1;">
+				<div class="card-body">
+					<h5 class="card-title">{{ announce.title }}</h5>
+					<p class="card-text">
+						<span class="badge text-bg-secondary">{{ announce.category|capitalize }}</span>
+					</p>
+					<p class="card-text">{{ announce.description }}</p>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">Publié par
+						{{ announce.author }}</li>
+					<li class="list-group-item">Le
+						{{ announce.published|format_datetime('medium', 'short', locale: 'fr',
                     timezone: 'Europe/Paris') }}</li>
-                <li class="list-group-item">
-                    {% if announce.updatedAt == announce.published %}
-                    Ajoutée {{ announce.published|time_diff(locale='fr') }}
-                    {% else %}
-                    Modifiée {{ announce.updatedAt|time_diff(locale='fr') }}
-                    {% endif %}
-                </li>
-            </ul>
-            {% if app.user and (app.user.firstname == announce.author or is_granted('ROLE_ADMIN')) %}
-            <div class="card-body d-flex">
-                <a href="{{ path('announce.edit', {id: announce.id}) }}" class="btn btn-primary"><svg
-                        xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="#FFFFFF">
-                        <path
-                            d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z" />
-                    </svg> Modifer mon annonce</a>
-                <form action="{{ path('announce.delete', {id: announce.id}) }}" method="post">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" href="{{ path('announce.delete', {id: announce.id}) }}"
-                        class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
-                            viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
-                            <path
-                                d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z" />
-                        </svg> Supprimer mon annonce</button>
-                </form>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-</div>
+					<li class="list-group-item">
+						{% if announce.updatedAt == announce.published %}
+							Ajoutée
+							{{ announce.published|time_diff(locale='fr') }}
+						{% else %}
+							Modifiée
+							{{ announce.updatedAt|time_diff(locale='fr') }}
+						{% endif %}
+					</li>
+				</ul>
+				{% if app.user and (app.user.firstname == announce.author or is_granted('ROLE_ADMIN')) %}
+					<div class="card-body d-flex">
+						<a href="{{ path('announce.edit', {id: announce.id}) }}" class="btn btn-primary">
+							<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#FFFFFF">
+								<path d="M120-120v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm584-528 56-56-56-56-56 56 56 56Z"/>
+							</svg>
+							Modifer mon annonce</a>
+						<form action="{{ path('announce.delete', {id: announce.id}) }}" method="post">
+							<input type="hidden" name="_method" value="DELETE">
+							<button type="submit" href="{{ path('announce.delete', {id: announce.id}) }}" class="btn btn-danger">
+								<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960" width="24px" fill="#FFFFFF">
+									<path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm80-160h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
+								</svg>
+								Supprimer mon annonce</button>
+						</form>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
 {% endblock %}
