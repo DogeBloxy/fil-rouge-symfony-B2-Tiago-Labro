@@ -11,7 +11,7 @@
 * Gestions des annonces
 * Gestion de l’espace membre
 * Gestion de profil
-* . Gestion des rôles
+* Gestion des rôles
 
 <h2>🛠️ Installer le projet :</h2>
 
